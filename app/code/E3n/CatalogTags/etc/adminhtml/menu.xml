@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add action="e3n_catalogtags/tag/index"
+             id="E3n_CatalogTags::tag_index"
+             sortOrder="100"
+             module="E3n_CatalogTags"
+             parent="Magento_Catalog::inventory"
+             resource="E3n_CatalogTags::tag_index"
+             title="Tags"
+             translate="title" />
+    </menu>
+</config>
