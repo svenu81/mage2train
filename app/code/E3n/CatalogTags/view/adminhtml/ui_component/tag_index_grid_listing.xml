@@ -3,7 +3,7 @@
     <!--Declare data source, columns list, button...-->
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">tag_index_grid_listing.tag_index_grid_listing_data_source</item>
+            <item name="provider" xsi:type="string">catalogtags_index_grid.catalogtags_index_grid_data_source</item>
         </item>
         <item name="buttons" xsi:type="array">
             <item name="add" xsi:type="array">
@@ -17,17 +17,17 @@
     <settings>
         <spinner>tag_index_columns</spinner>
         <deps>
-            <dep>tag_index_grid_listing.tag_index_grid_listing_data_source</dep>
+            <dep>catalogtags_index_grid.catalogtags_index_grid_data_source</dep>
         </deps>
     </settings>
-    <dataSource name="tag_index_grid_data_source" component="Magento_UI/js/grid/provider">
+    <dataSource name="catalogtags_index_grid_data_source" component="Magento_UI/js/grid/provider">
         <settings>
             <storageConfig>
                 <param name="cacheRequest" xsi:type="boolean">false</param>
             </storageConfig>
         </settings>
         <aclResource>E3n_CatalogTags::tag_index</aclResource>
-        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="tag_index_listing_data_provider">
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="catalogtags_index_grid_data_provider">
             <settings>
                 <requestFieldName>id</requestFieldName>
                 <primaryFieldName>tag_id</primaryFieldName>
