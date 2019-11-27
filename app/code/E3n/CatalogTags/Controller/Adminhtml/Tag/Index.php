@@ -25,10 +25,7 @@ class Index extends \Magento\Backend\App\Action
      */
     public function execute()
     {
-        $resultPage = $this->resultPageFactory->create();
-        $resultPage->getConfig()->getTitle()->prepend(__('Tags'));
-
-        return $resultPage;
+        return $this->resultPageFactory->create();
     }
 
     public function _isAllowed()
