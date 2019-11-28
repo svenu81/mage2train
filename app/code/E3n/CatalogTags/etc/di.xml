@@ -3,7 +3,7 @@
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="catalogtags_index_grid_data_source" xsi:type="string">E3n\CatalogTags\Model\ResourceModel\Tag\Collection</item>
+                <item name="catalogtags_index_grid_data_provider" xsi:type="string">E3n\CatalogTags\Model\ResourceModel\Tag\Collection</item>
             </argument>
         </arguments>
     </type>
@@ -13,4 +13,16 @@
             <argument name="resourceModel" xsi:type="string">E3n\CatalogTags\Model\ResourceModel\Tag</argument>
         </arguments>
     </virtualType>
+    <virtualType name="E3n\CatalogTags\Logger\Custom" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="debug" xsi:type="object">E3n\CatalogTags\Logger\Custom</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="logger" xsi:type="object">E3n\CatalogTags\Logger\Custom</argument>
+        </arguments>
+    </type>
 </config>
