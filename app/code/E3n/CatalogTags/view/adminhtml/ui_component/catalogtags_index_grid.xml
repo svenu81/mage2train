@@ -30,6 +30,25 @@
             </settings>
         </dataProvider>
     </dataSource>
+    <listingToolbar name="listing_top">
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="params" xsi:type="array">
+                        <item name="filters_modifier" xsi:type="array" />
+                    </item>
+                    <item name="statefull" xsi:type="array">
+                        <item name="applied" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <statefull>
+                    <property name="applied" xsi:type="boolean">false</property>
+                </statefull>
+            </settings>
+        </filters>
+    </listingToolbar>
     <paging>
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
@@ -57,25 +76,6 @@
             </item>
         </argument>
     </paging>
-    <listingToolbar name="listing_top">
-        <filters name="listing_filters">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="params" xsi:type="array">
-                        <item name="filters_modifier" xsi:type="array" />
-                    </item>
-                    <item name="statefull" xsi:type="array">
-                        <item name="applied" xsi:type="boolean">false</item>
-                    </item>
-                </item>
-            </argument>
-            <settings>
-                <statefull>
-                    <property name="applied" xsi:type="boolean">false</property>
-                </statefull>
-            </settings>
-        </filters>
-    </listingToolbar>
     <columns name="tag_index_columns">
         <selectionsColumn name="ids" sortOrder="0">
             <argument name="data" xsi:type="array">
