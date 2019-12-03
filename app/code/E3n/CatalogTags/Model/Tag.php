@@ -11,7 +11,7 @@ class Tag extends AbstractModel implements IdentityInterface
 
     protected $_cacheTag = 'e3n_catalogtags_tag';
 
-    protected $_eventPrefix = 'e3n_catalogstags_tag';
+    protected $_eventPrefix = 'e3n_catalogtags_tag';
 
     protected function _construct()
     {

@@ -14,6 +14,6 @@ class Tag extends AbstractDb
 
     public function _construct()
     {
-        $this->_init('e3n_catalogstags_tag', 'tag_id');
+        $this->_init('e3n_catalog_tags', 'tag_id');
     }
 }

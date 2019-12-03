@@ -1,4 +1,5 @@
 <?php
+
 namespace E3n\CatalogTags\Controller\Adminhtml\Tag;
 
 class Index extends \Magento\Backend\App\Action

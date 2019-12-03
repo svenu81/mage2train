@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">catalogtags_index_grid.catalogtags_index_grid_data_source</item>
+            <item name="deps" xsi:type="string">catalogtags_index_grid.catalogtags_index_grid_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">tag_index_columns</item>
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string" translate="true">Add New Tag</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/newAction</item>
+            </item>
+        </item>
+    </argument>
+    <dataSource name="catalogtags_index_grid_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <updateUrl path="mui/index/render" />
+            <storageConfig>
+                <param name="indexField" xsi:type="string">tag_id</param>
+            </storageConfig>
+        </settings>
+        <aclResource>E3n_CatalogTags::tag_index</aclResource>
+        <dataProvider class="E3n\CatalogTags\Model\Tag\Listing\DataProvider" name="catalogtags_index_grid_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>tag_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <paging>
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="value" xsi:type="string">10</item>
+                <item name="minSize" xsi:type="string">5</item>
+                <item name="maxSize" xsi:type="string">25</item>
+                <item name="options" xsi:type="array">
+                    <item name="5" xsi:type="array">
+                        <item name="value" xsi:type="string">5</item>
+                        <item name="label" xsi:type="string">5</item>
+                    </item>
+                    <item name="10" xsi:type="array">
+                        <item name="value" xsi:type="string">10</item>
+                        <item name="label" xsi:type="string">10</item>
+                    </item>
+                    <item name="15" xsi:type="array">
+                        <item name="value" xsi:type="string">15</item>
+                        <item name="label" xsi:type="string">15</item>
+                    </item>
+                    <item name="25" xsi:type="array">
+                        <item name="value" xsi:type="string">25</item>
+                        <item name="label" xsi:type="string">25</item>
+                    </item>
+                </item>
+            </item>
+        </argument>
+    </paging>
+    <listingToolbar name="listing_top">
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="params" xsi:type="array">
+                        <item name="filters_modifier" xsi:type="array" />
+                    </item>
+                    <item name="statefull" xsi:type="array">
+                        <item name="applied" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <statefull>
+                    <property name="applied" xsi:type="boolean">false</property>
+                </statefull>
+            </settings>
+        </filters>
+    </listingToolbar>
+    <columns name="tag_index_columns">
+        <selectionsColumn name="ids" sortOrder="0">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">tag_id</item>
+                </item>
+            </argument>
+            <settings>
+                <indexField>tag_id</indexField>
+                <preserveSelectionsOnFilter>true</preserveSelectionsOnFilter>
+            </settings>
+        </selectionsColumn>
+        <column name="tag_id" sortOrder="10">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+            </item>
+            <settings>
+                <filter>textRange</filter>
+                <label>ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="value" sortOrder="20">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Value</label>
+            </settings>
+        </column>
+    </columns>
+</listing>
