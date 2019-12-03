@@ -23,7 +23,7 @@
             </storageConfig>
         </settings>
         <aclResource>E3n_CatalogTags::tag_index</aclResource>
-        <dataProvider class="E3n\CatalogTags\Model\Tag\Listing\DataProvider" name="catalogtags_index_grid_data_source">
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="catalogtags_index_grid_data_source">
             <settings>
                 <requestFieldName>id</requestFieldName>
                 <primaryFieldName>tag_id</primaryFieldName>
@@ -36,9 +36,6 @@
                 <item name="config" xsi:type="array">
                     <item name="params" xsi:type="array">
                         <item name="filters_modifier" xsi:type="array" />
-                    </item>
-                    <item name="statefull" xsi:type="array">
-                        <item name="applied" xsi:type="boolean">false</item>
                     </item>
                 </item>
             </argument>
@@ -89,9 +86,6 @@
             </settings>
         </selectionsColumn>
         <column name="tag_id" sortOrder="10">
-            <item name="js_config" xsi:type="array">
-                <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
-            </item>
             <settings>
                 <filter>textRange</filter>
                 <label>ID</label>
