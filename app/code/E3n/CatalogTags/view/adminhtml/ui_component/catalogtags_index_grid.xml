@@ -23,7 +23,7 @@
             </storageConfig>
         </settings>
         <aclResource>E3n_CatalogTags::tag_index</aclResource>
-        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="catalogtags_index_grid_data_source">
+        <dataProvider class="E3n\CatalogTags\Model\Tag\Listing\DataProvider" name="catalogtags_index_grid_data_source">
             <settings>
                 <requestFieldName>id</requestFieldName>
                 <primaryFieldName>tag_id</primaryFieldName>
@@ -31,48 +31,27 @@
         </dataProvider>
     </dataSource>
     <listingToolbar name="listing_top">
-        <filters name="listing_filters">
+        <paging name="listing_paging" />
+        <massaction name="listing_massaction">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="params" xsi:type="array">
-                        <item name="filters_modifier" xsi:type="array" />
-                    </item>
+                    <item name="selectProvider" xsi:type="string">catalogtags_index_grid_.listing_top.tag_index_columns.ids</item>
+                    <item name="indexField" xsi:type="string">tag_id</item>
                 </item>
             </argument>
-            <settings>
-                <statefull>
-                    <property name="applied" xsi:type="boolean">false</property>
-                </statefull>
-            </settings>
-        </filters>
+            <action name="delete">
+                <settings>
+                    <type>delete</type>
+                    <label>Delete</label>
+                    <url path="catalogtags/tag/massDelete" />
+                    <confirm>
+                        <title>Delete tag</title>
+                        <message>Do you really wan't to delete these tags?</message>
+                    </confirm>
+                </settings>
+            </action>
+        </massaction>
     </listingToolbar>
-    <paging>
-        <argument name="data" xsi:type="array">
-            <item name="config" xsi:type="array">
-                <item name="value" xsi:type="string">10</item>
-                <item name="minSize" xsi:type="string">5</item>
-                <item name="maxSize" xsi:type="string">25</item>
-                <item name="options" xsi:type="array">
-                    <item name="5" xsi:type="array">
-                        <item name="value" xsi:type="string">5</item>
-                        <item name="label" xsi:type="string">5</item>
-                    </item>
-                    <item name="10" xsi:type="array">
-                        <item name="value" xsi:type="string">10</item>
-                        <item name="label" xsi:type="string">10</item>
-                    </item>
-                    <item name="15" xsi:type="array">
-                        <item name="value" xsi:type="string">15</item>
-                        <item name="label" xsi:type="string">15</item>
-                    </item>
-                    <item name="25" xsi:type="array">
-                        <item name="value" xsi:type="string">25</item>
-                        <item name="label" xsi:type="string">25</item>
-                    </item>
-                </item>
-            </item>
-        </argument>
-    </paging>
     <columns name="tag_index_columns">
         <selectionsColumn name="ids" sortOrder="0">
             <argument name="data" xsi:type="array">

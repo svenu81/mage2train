@@ -13,16 +13,4 @@
             <argument name="resourceModel" xsi:type="string">E3n\CatalogTags\Model\ResourceModel\Tag</argument>
         </arguments>
     </virtualType>
-    <virtualType name="E3n\CatalogTags\Logger\Custom" type="Magento\Framework\Logger\Monolog">
-        <arguments>
-            <argument name="handlers" xsi:type="array">
-                <item name="debug" xsi:type="object">E3n\CatalogTags\Logger\Custom</item>
-            </argument>
-        </arguments>
-    </virtualType>
-    <type name="Magento\Framework\Logger\Monolog">
-        <arguments>
-            <argument name="logger" xsi:type="object">E3n\CatalogTags\Logger\Custom</argument>
-        </arguments>
-    </type>
 </config>
