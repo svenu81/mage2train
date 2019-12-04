@@ -1,5 +1,12 @@
 <?xml version="1.0"?>
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page layout="admin-2columns-left" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <update handle="catalogtags_tag_edit"/>
-    <body/>
+    <body>
+        <referenceBlock name="tag_form">
+            <block class="E3n\CatalogTags\Block\Adminhtml\Tag\Edit\Tab\Value" name="value" />
+            <action method="setTabLabel">
+                <argument name="label" xsi:type="string">Value</argument>
+            </action>
+        </referenceBlock>
+    </body>
 </page>

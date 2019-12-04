@@ -31,11 +31,12 @@
         </dataProvider>
     </dataSource>
     <listingToolbar name="listing_top">
+        <filterSearch name="fulltext"/>
         <paging name="listing_paging" />
         <massaction name="listing_massaction">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="selectProvider" xsi:type="string">catalogtags_index_grid_.listing_top.tag_index_columns.ids</item>
+                    <item name="selectProvider" xsi:type="string">catalogtags_index_grid.catalogtags_index_grid.tag_index_columns.ids</item>
                     <item name="indexField" xsi:type="string">tag_id</item>
                 </item>
             </argument>
