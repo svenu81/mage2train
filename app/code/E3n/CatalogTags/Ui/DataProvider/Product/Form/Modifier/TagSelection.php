@@ -206,42 +206,42 @@ class TagSelection extends AbstractModifier
                 ],
             ]
         ];
-        if ($this->isAllowed()) {
-            $value['children']['create_tag_button'] = [
-                'arguments' => [
-                    'data' => [
-                        'config' => [
-                            'title' => __('New Tag'),
-                            'formElement' => 'container',
-                            'additionalClasses' => 'admin__field-small',
-                            'componentType' => 'container',
-                            'component' => 'Magento_Ui/js/form/components/button',
-                            'template' => 'ui/form/components/button/container',
-                            'actions' => [
-                                [
-                                    'targetName' => 'product_form.product_form.create_tag_modal',
-                                    'actionName' => 'toggleModal',
-                                ],
-                                [
-                                    'targetName' => 'product_form.product_form.create_tag_modal.create_tag',
-                                    'actionName' => 'render'
-                                ],
-                                [
-                                    'targetName' => 'product_form.product_form.create_tag_modal.create_tag',
-                                    'actionName' => 'resetForm'
-                                ]
+
+        $value['children']['create_tag_button'] = [
+            'arguments' => [
+                'data' => [
+                    'config' => [
+                        'title' => __('New Tag'),
+                        'formElement' => 'container',
+                        'additionalClasses' => 'admin__field-small',
+                        'componentType' => 'container',
+                        'component' => 'Magento_Ui/js/form/components/button',
+                        'template' => 'ui/form/components/button/container',
+                        'actions' => [
+                            [
+                                'targetName' => 'product_form.product_form.create_tag_modal',
+                                'actionName' => 'toggleModal',
                             ],
-                            'additionalForGroup' => true,
-                            'provider' => false,
-                            'source' => 'product_details',
-                            'displayArea' => 'insideGroup',
-                            'sortOrder' => 15,
-                            'dataScope'  => $fieldCode,
+                            [
+                                'targetName' => 'product_form.product_form.create_tag_modal.create_tag',
+                                'actionName' => 'render'
+                            ],
+                            [
+                                'targetName' => 'product_form.product_form.create_tag_modal.create_tag',
+                                'actionName' => 'resetForm'
+                            ]
                         ],
+                        'additionalForGroup' => true,
+                        'provider' => false,
+                        'source' => 'product_details',
+                        'displayArea' => 'insideGroup',
+                        'sortOrder' => 15,
+                        'dataScope'  => $fieldCode,
                     ],
-                ]
-            ];
-        }
+                ],
+            ]
+        ];
+
         $meta = $this->arrayManager->merge(
             $containerPath,
             $meta,
