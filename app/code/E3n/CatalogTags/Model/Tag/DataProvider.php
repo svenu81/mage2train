@@ -6,6 +6,8 @@ use E3n\CatalogTags\Model\ResourceModel\Tag\CollectionFactory;
 
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
+    const TREE_ROOT_ID = 1;
+
     /**
      * @param string $name
      * @param string $primaryFieldName
