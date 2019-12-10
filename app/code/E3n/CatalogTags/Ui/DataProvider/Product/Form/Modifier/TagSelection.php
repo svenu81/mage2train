@@ -13,6 +13,12 @@ use Magento\Framework\Serialize\SerializerInterface;
 use Magento\Framework\Stdlib\ArrayManager;
 use Magento\Framework\UrlInterface;
 
+use Magento\Ui\Component\Form\Fieldset;
+use Magento\Ui\Component\Form\Field;
+use Magento\Ui\Component\Form\Element\Select;
+use Magento\Ui\Component\Form\Element\Input;
+use Magento\Ui\Component\Form\Element\DataType\Text;
+
 class TagSelection extends AbstractModifier
 {
     /**#@+
@@ -75,7 +81,8 @@ class TagSelection extends AbstractModifier
         UrlInterface $urlBuilder,
         ArrayManager $arrayManager,
         SerializerInterface $serializer = null
-    ) {
+    )
+    {
         $this->locator = $locator;
         $this->tagCollectionFactory = $tagCollectionFactory;
         $this->dbHelper = $dbHelper;
@@ -90,6 +97,7 @@ class TagSelection extends AbstractModifier
      */
     public function modifyMeta(array $meta)
     {
+        //$meta = $this->createTestTagField($meta);
         $meta = $this->createNewTagModal($meta);
         $meta = $this->customizeTagsField($meta);
 
@@ -101,12 +109,68 @@ class TagSelection extends AbstractModifier
         return $data;
     }
 
-    protected function createNewTagModal(array $meta)
+    protected function createTestTagField(array $meta)
     {
-        return $this->arrayManager->set(
-            'create_tag_modal',
+        $meta = array_replace_recursive(
             $meta,
             [
+                'magenest' => [
+                    'arguments' => [
+                        'data' => [
+                            'config' => [
+                                'label' => __('Magenest Custom Fields'),
+                                'collapsible' => true,
+                                'componentType' => Fieldset::NAME,
+                                'dataScope' => 'data.magenest',
+                                'sortOrder' => 10
+                            ],
+                        ],
+                    ],
+                    'children' => [
+                        'status' => [
+                            'arguments' => [
+                                'data' => [
+                                    'config' => [
+                                        'label' => __('Status'),
+                                        'componentType' => Field::NAME,
+                                        'formElement' => Select::NAME,
+                                        'dataScope' => 'status',
+                                        'dataType' => Text::NAME,
+                                        'sortOrder' => 10,
+                                        'options' => [
+                                            ['value' => '0', 'label' => __('Inactive')],
+                                            ['value' => '1', 'label' => __('Active')]
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'textField' => [
+                            'arguments' => [
+                                'data' => [
+                                    'config' => [
+                                        'label' => __('Text Field'),
+                                        'componentType' => Field::NAME,
+                                        'formElement' => Input::NAME,
+                                        'dataScope' => 'textField',
+                                        'dataType' => Text::NAME,
+                                        'sortOrder' => 20
+                                    ],
+                                ],
+                            ],
+                        ]
+                    ],
+                ]
+            ]
+        );
+
+        return $meta;
+    }
+
+    protected function createNewTagModal(array $meta)
+    {
+        return array_replace_recursive($meta, [
+            'create_tag_modal' => [
                 'arguments' => [
                     'data' => [
                         'config' => [
@@ -116,7 +180,7 @@ class TagSelection extends AbstractModifier
                                 'title' => __('New Tag'),
                             ],
                             'imports' => [
-                                'state' => '!index=create_tag:responseStatus'
+                                'state' => '!index=catalog_tag_create:responseStatus'
                             ],
                         ],
                     ],
@@ -139,7 +203,7 @@ class TagSelection extends AbstractModifier
                                             'buttons' => 1
                                         ]
                                     ),
-                                    'autoRender' => false,
+                                    'autoRender' => true,
                                     'ns' => 'new_tag_form',
                                     'externalProvider' => 'new_tag_form.new_tag_form_data_source',
                                     'toolbarContainer' => '${ $.parentName }',
@@ -150,7 +214,7 @@ class TagSelection extends AbstractModifier
                     ]
                 ]
             ]
-        );
+        ]);
     }
 
     protected function customizeTagsField(array $meta)
@@ -236,7 +300,7 @@ class TagSelection extends AbstractModifier
                         'source' => 'product_details',
                         'displayArea' => 'insideGroup',
                         'sortOrder' => 15,
-                        'dataScope'  => $fieldCode,
+                        'dataScope' => $fieldCode,
                     ],
                 ],
             ]
@@ -253,17 +317,17 @@ class TagSelection extends AbstractModifier
 
     protected function getTagsTree($filter = null)
     {
-        $storeId = (int) $this->locator->getStore()->getId();
+        $storeId = (int)$this->locator->getStore()->getId();
 
         $tagsTree = $this->retrieveTagsTree(
             $storeId,
-            $this->retrieveShownTagsIds($storeId, (string) $filter)
+            $this->retrieveShownTagsIds($storeId, (string)$filter)
         );
 
         return $tagsTree;
     }
 
-    private function retrieveShownTagsIds(int $storeId, string $filter = '') : array
+    private function retrieveShownTagsIds(int $storeId, string $filter = ''): array
     {
         /* @var $matchingNamesCollection \E3n\CatalogTags\Model\ResourceModel\Tag\Collection */
         $matchingNamesCollection = $this->tagCollectionFactory->create();
@@ -291,7 +355,7 @@ class TagSelection extends AbstractModifier
         return $shownTagsIds;
     }
 
-    private function retrieveTagsTree(int $storeId, array $shownTagsIds) : ?array
+    private function retrieveTagsTree(int $storeId, array $shownTagsIds): ?array
     {
         /* @var $collection \E3n\CatalogTags\Model\ResourceModel\Tag\Collection */
         $collection = $this->tagCollectionFactory->create();
