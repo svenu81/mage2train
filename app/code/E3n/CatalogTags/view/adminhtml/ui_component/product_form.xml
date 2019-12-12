@@ -1,37 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
-    <modal name="advanced_inventory_modal">
-        <fieldset name="stock_data">
+
+    <modal name="tag_modal">
+        <field name="tag_chooser">
             <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">E3n\CatalogTags\Ui\Component\Product\Form\Tags\Options</item>
                 <item name="config" xsi:type="array">
-                    <item name="label" xsi:type="string" translate="true">Stock Configuration</item>
-                    <item name="dataScope" xsi:type="string"/>
-                    <item name="sortOrder" xsi:type="number">100</item>
-                    <item name="collapsible" xsi:type="boolean">false</item>
+                    <item name="label" xsi:type="string" translate="true">Select the awesome way</item>
+                    <item name="componentType" xsi:type="string">field</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">E3n_CatalogTags/js/components/new-tag</item>
+                    <item name="elementTmpl" xsi:type="string">ui/grid/filters/elements/ui-select</item>
+                    <item name="dataScope" xsi:type="string">tag_id</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="showCheckbox" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">true</item>
+                    <item name="levelsVisibility" xsi:type="number">1</item>
+                    <item name="sortOrder" xsi:type="number">5</item>
+                    <item name="required" xsi:type="boolean">true</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">false</item>
+                    </item>
+                    <item name="listens" xsi:type="array">
+                        <item name="${ $.tags }.${ $.tags }:responseData" xsi:type="string">setParsed</item>
+                    </item>
                 </item>
             </argument>
-            <field name="custom_toggle">
-                <argument name="data" xsi:type="array">
-                    <item name="config" xsi:type="array">
-                        <item name="sortOrder" xsi:type="number">3000</item>
-                        <item name="dataType" xsi:type="string">boolean</item>
-                        <item name="formElement" xsi:type="string">checkbox</item>
-                        <item name="source" xsi:type="string">category</item>
-                        <item name="prefer" xsi:type="string">toggle</item>
-                        <item name="label" xsi:type="string" translate="true">Custom Label</item>
-                        <item name="notice" xsi:type="string">Custom description.</item>
-                        <item name="valueMap" xsi:type="array">
-                            <item name="true" xsi:type="string">1</item>
-                            <item name="false" xsi:type="string">0</item>
-                        </item>
-                        <item name="validation" xsi:type="array">
-                            <item name="required-entry" xsi:type="boolean">false</item>
-                        </item>
-                        <item name="default" xsi:type="string">0</item>
-                    </item>
-                </argument>
-            </field>
-        </fieldset>
+        </field>
     </modal>
 </form>
